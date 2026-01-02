@@ -1,41 +1,35 @@
-import React from 'react'
-import {
-  createRoutesFromElements,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RootLayout from "./layout/RootLayout"; // adjust the import as needed
+import Home from "./pages/Home";
+import AddCustomer from "./pages/AddCustomer";
+import ViewCustomers from "./pages/ViewCustomers";
+import AddOrder from "./pages/AddOrder";
+import ViewOrders from "./pages/ViewOrders";
+import AddCategory from "./pages/AddCategory";
+import ViewCategories from "./pages/ViewCategories";
+import ViewUsers from "./pages/ViewUsers";
+// ... other imports
 
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
-import Shop from './pages/Shop.jsx'
-import Contact from './pages/Contact.jsx'
-import Services from './pages/Services.jsx'
-import Error from './pages/Error.jsx';
-import RootLayout from './layout/RootLayout.jsx';
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-
-    <Route>
-      <Route path="/" element={<RootLayout />}>
-        <Route path="" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/services" element={<Services />}></Route>
-        <Route path="/*" element={<Error />}></Route>     
-      </Route>     
-    </Route>
-  )
-);
-
-
-
-const App = () => {
+function App() {
   return (
-    <RouterProvider router={router} />
-  )
+    <Router>
+      <Routes>
+        {/* Wrap all routes in RootLayout */}
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />      {/* HOME ROUTE */}
+          <Route path="/User/view" element={<ViewUsers />} />
+          <Route path="/customer/add" element={<AddCustomer />} />
+          <Route path="/customer/view" element={<ViewCustomers />} />
+          <Route path="/order/add" element={<AddOrder />} />
+          <Route path="/order/view" element={<ViewOrders />} />
+          <Route path="/category/add" element={<AddCategory />} />
+          <Route path="/category/view" element={<ViewCategories />} />
+          {/* ...other routes */}
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
